@@ -1,7 +1,11 @@
 import React from 'react';
-
+import ReactQueryProvider from './providers/react-query-provider';
 function App() {
-  return <div className="App"></div>;
+  return (
+    <ReactQueryProvider>
+      <div className="App"></div>
+    </ReactQueryProvider>
+  );
 }
 
 export default App;
