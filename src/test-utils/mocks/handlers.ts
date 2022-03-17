@@ -1,8 +1,9 @@
 import { rest } from 'msw';
 import getMockExchanges from '../mockedData/exchanges/getMockExchanges';
 import getMockExchange from '../mockedData/exchange/getMockExchange';
+
 export const exchangeHandlerException = rest.get(
-  `${process.env.API_BASE_URL!}/exchanges/:id`,
+  `${process.env.REACT_APP_API_URL!}/exchanges/:id`,
   async (req, res, ctx) => {
     return res(
       ctx.status(500),
@@ -11,24 +12,23 @@ export const exchangeHandlerException = rest.get(
   }
 );
 export const handlers = [
-  rest.get(`${process.env.API_BASE_URL!}/exchanges`, (req, res, ctx) => {
-    const limit = req.url.searchParams.get('limit') as string;
+  rest.get(`${process.env.REACT_APP_API_URL!}/exchanges`, (req, res, ctx) => {
+    const limit = req.url.searchParams.get('per_page') as string;
     const page = req.url.searchParams.get('page') as string;
-    return res(
-      ctx.status(200),
-      ctx.json({
-        ...getMockExchanges(+page, +limit),
-      })
-    );
+    const data = getMockExchanges(+page, +limit);
+    return res(ctx.status(200), ctx.json(data));
   }),
 
-  rest.get(`${process.env.API_BASE_URL!}/exchanges/:id`, (req, res, ctx) => {
-    const { id } = req.params;
-    return res(
-      ctx.status(200),
-      ctx.json({
-        ...getMockExchange(id as string),
-      })
-    );
-  }),
+  rest.get(
+    `${process.env.REACT_APP_API_URL!}/exchanges/:id`,
+    (req, res, ctx) => {
+      const { id } = req.params;
+      return res(
+        ctx.status(200),
+        ctx.json({
+          ...getMockExchange(id as string),
+        })
+      );
+    }
+  ),
 ];
