@@ -23,7 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "precommit":"lint-staged"
   },
   "eslintConfig": {
     "extends": [
@@ -52,7 +53,8 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
-      "eslint --ext .tsx --ext .ts ./src --fix"
+      "eslint --ext .tsx --ext .ts ./src --fix",
+      "jest --bail --passWithNoTests --findRelatedTests"
     ],
     "./src/**": [
       "prettier --write"
