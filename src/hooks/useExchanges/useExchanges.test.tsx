@@ -1,11 +1,11 @@
 import { renderHook } from '@testing-library/react-hooks';
-import useExhibitions from './useExchanges';
+import useExchanges from './useExchanges';
 import { createWrapper } from 'test-utils/wrapper';
 import getMockExchanges from 'test-utils/mockedData/exchanges/getMockExchanges';
 
 describe('testing useExchanges hook', () => {
   test('fetchNextPage works fine in hook', async () => {
-    const { result, waitFor } = renderHook(() => useExhibitions({ limit: 5 }), {
+    const { result, waitFor } = renderHook(() => useExchanges({ limit: 5 }), {
       wrapper: createWrapper(),
     });
 

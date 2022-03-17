@@ -1,3 +1,3 @@
-import useExhibitions from './useExchanges';
+import useExchanges from './useExchanges';
 
-export { useExhibitions };
+export { useExchanges };
