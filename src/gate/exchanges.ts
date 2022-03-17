@@ -9,12 +9,16 @@ import type {
 export const getExchanges = async (
   { per_page, page }: AllExchangesFilter,
   options?: AxiosRequestConfig
-): Promise<AllExchangesResponse> => {
+) => {
   const data = await api.get<AllExchangesResponse>(
     `/exchanges?page=${page}&per_page=${per_page}`,
     options
   );
-  return data.data;
+  return {
+    exchanges: data.data,
+    totalPages: parseInt(data.headers.total),
+    currentPage: page,
+  };
 };
 
 export const getExchange = async (
