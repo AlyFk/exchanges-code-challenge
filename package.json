@@ -23,7 +23,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "precommit":"lint-staged",
+    "test:staged": "cross-env CI=true react-scripts test --bail --env=jsdom --findRelatedTests"
   },
   "eslintConfig": {
     "extends": [
@@ -52,7 +54,8 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
-      "eslint --ext .tsx --ext .ts ./src --fix"
+      "eslint --ext .tsx --ext .ts ./src --fix",
+      "npm run test:staged"
     ],
     "./src/**": [
       "prettier --write"
