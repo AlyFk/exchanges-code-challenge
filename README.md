@@ -9,7 +9,7 @@ npm install
 ## Development
 
 ```
-npm dev
+npm start
 ```
 ## Production
 
