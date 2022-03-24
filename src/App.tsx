@@ -1,14 +1,11 @@
 import React from 'react';
-import ReactQueryProvider from './providers/react-query-provider';
-import { ExchangeList } from 'pages/ExchangeList/ExchangeList';
+import { useRoutes } from 'react-router-dom';
+import routes from 'routes';
+import 'styles/global.scss';
+
 function App() {
-  return (
-    <ReactQueryProvider>
-      <div className="App">
-        <ExchangeList />
-      </div>
-    </ReactQueryProvider>
-  );
+  const element = useRoutes(routes);
+  return <>{element}</>;
 }
 
 export default App;

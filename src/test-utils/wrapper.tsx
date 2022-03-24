@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import { ReactRouterProvider } from 'providers';
 import * as React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -14,7 +15,9 @@ const createTestQueryClient = () =>
 export function renderWithClient(ui: React.ReactElement) {
   const testQueryClient = createTestQueryClient();
   const { rerender, ...result } = render(
-    <QueryClientProvider client={testQueryClient}>{ui}</QueryClientProvider>
+    <ReactRouterProvider>
+      <QueryClientProvider client={testQueryClient}>{ui}</QueryClientProvider>
+    </ReactRouterProvider>
   );
   return {
     ...result,
