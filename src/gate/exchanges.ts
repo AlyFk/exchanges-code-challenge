@@ -10,7 +10,7 @@ export const getExchanges = async (
   { per_page, page }: AllExchangesFilter,
   options?: AxiosRequestConfig
 ) => {
-  const data = await api.get<AllExchangesResponse>(
+  const data = await api.get<AllExchangesResponse[]>(
     `/exchanges?page=${page}&per_page=${per_page}`,
     options
   );
